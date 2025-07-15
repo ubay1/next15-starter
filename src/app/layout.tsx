@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Inter, Manrope } from "next/font/google";
-import ReactQueryProvider from "@/providers/react-query";
+import ReactQueryProvider from "@/providers/react-query-provider";
 import { Toaster } from "@/components/ui/sonner";
 
 import "./globals.css";
