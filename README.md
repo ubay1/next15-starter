@@ -1,36 +1,92 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ Next.js Fullstack Boilerplate
 
-## Getting Started
+A modern fullstack starter kit using **Next.js**, **Tailwind CSS**, **Shadcn UI**, and a full ecosystem for scalable, type-safe development.
 
-First, run the development server:
+## ✨ Features
+
+- ⚛️ **React** + **Next.js App Router**
+- 💅 **Tailwind CSS** with **Shadcn UI** and **Class Variance Authority (CVA)**
+- ✅ **Type-safe Forms** with **React Hook Form** + **Zod**
+- 🗂️ **State Management** with **Zustand**
+- 🔁 **Data Fetching** with **React Query**
+- 🔌 **Type-safe APIs** with **tRPC**
+- 🔐 **Database** with **Supabase**
+- 🧪 **Testing** with **Vitest** & **React Testing Library**
+- 🧭 **E2E Testing** with **Playwright**
+- 🔧 Fully typed with **TypeScript**
+
+## 🛠 Getting Started
+
+### Prerequisites
+
+- **Node.js** (v18 or higher)
+- **npm** (v9 or higher) / or **pnpm** / **yarn**
+
+### Installation
 
 ```bash
+Clone the repository:
+git clone https://github.com/ubay1/next15-starter.git
+
+Install dependencies:
+cd nextjs-fullstack-boilerplate
+npm install
+
+To start the development server:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+To run unit tests:
+npm run test
+
+To run E2E tests:
+npm run test:e2e
+
+To build for production:
+npm run build
+
+Environment Variables
+Copy the example .env file and configure as needed:
+cp .env.example .env
+
+
+📁 Project Structur
+
+src/
+  ├── app/              # Next.js App Router
+  ├── components/       # UI components (with Shadcn/CVA)
+  ├── features/         # Feature-based modules
+  ├── hooks/            # Custom hooks
+  ├── lib/              # Utilities (Supabase client, helpers, etc)
+  ├── server/           # tRPC handlers & procedures
+  ├── types/            # Global type definitions
+  └── tests/            # Test utilities
+
+🧰 Tech Stack
+Frontend: Next.js, React, Tailwind CSS, Shadcn UI
+
+State: Zustand, React Query
+
+Forms: React Hook Form + Zod
+
+Backend: tRPC, Supabase
+
+Testing: Vitest, React Testing Library, Playwright
+
+Utilities: TypeScript, CVA, ESLint, Prettier
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+🤝 Contributing
+Contributions are welcome! Feel free to open issues or pull requests.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Fork the project
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Create your feature branch: git checkout -b feature/my-feature
 
-## Learn More
+Commit your changes: git commit -m 'feat: add my feature'
 
-To learn more about Next.js, take a look at the following resources:
+Push to the branch: git push origin feature/my-feature
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open a pull request
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+📄 License
+This project is licensed under the MIT License — see the LICENSE file for details.
