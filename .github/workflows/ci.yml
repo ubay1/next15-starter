@@ -1,0 +1,129 @@
+name: Lint, Unit Test, E2E, and Deploy
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  # 1️⃣ Install + Lint + Unit Test + Build + E2E Test
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+      - name: Build app
+        run: npm run build
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: npx playwright test
+
+  # 2️⃣ E2E Test pakai Playwright
+  # e2e:
+  #   runs-on: ubuntu-latest
+  #   needs: lint-and-test
+  #   defaults:
+  #     run:
+  #       working-directory: ./client
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v4
+
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 20
+  #         cache: npm
+
+  #     - name: Install dependencies
+  #       run: npm ci
+
+  #     - name: Build app
+  #       run: npm run build
+
+  #     - name: Install Playwright browsers
+  #       run: npx playwright install --with-deps
+
+  #     - name: Run Playwright tests
+  #       run: npx playwright test
+
+  # 3️⃣ Auto Deploy ke Netlify (bisa Vercel juga)
+  # 1. Dapetin NETLIFY_AUTH_TOKEN (Ini adalah token personal access untuk akses API Netlify)
+  # - Login ke Netlify → User Settings
+  # - Scroll ke "Personal Access Tokens"
+  # - Klik New access token
+  # - Kasih nama (misal: ci-playwright)
+  # - Copy tokennya (panjang banget, cuma muncul sekali!)
+
+  # 2. Dapetin NETLIFY_SITE_ID (Ini ID unik site kamu di Netlify. Ada 2 cara)
+  # a) Via Dashboard
+  # Masuk ke site kamu di Netlify
+  # Settings → Site information
+  # Lihat bagian Site ID → copy
+  # b) Via CLI
+  # Install Netlify CLI: npm install -g netlify-cli
+  # Login: netlify login
+  # npx netlify sites:list
+  # Atau di root project (kalau udah link ke Netlify): npx netlify status
+
+  # 3. Simpan di GitHub Actions Secrets
+  # Masuk repo kamu → Settings → Secrets and variables → Actions
+  # Tambah NETLIFY_AUTH_TOKEN → paste token tadi
+  # Tambah NETLIFY_SITE_ID → paste site id tadi
+
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: e2e
+  #   defaults:
+  #     run:
+  #       working-directory: ./client
+  #   if: github.ref == 'refs/heads/main'
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v4
+
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 20
+  #         cache: 'npm'
+
+  #     - name: Install dependencies
+  #       run: npm install
+
+  #     - name: Build project
+  #       run: npm run build
+
+  #     - name: Deploy to Netlify
+  #       uses: nwtgck/actions-netlify@v3
+  #       with:
+  #         publish-dir: ./dist
+  #         production-branch: main
+  #         github-token: ${{ secrets.GITHUB_TOKEN }} # otomatis dari github
+  #         deploy-message: 'Auto deploy from GitHub Actions 🚀'
+  #         enable-pull-request-comment: true
+  #         enable-commit-comment: true
+  #         alias: deploy-preview
+  #       env:
+  #         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+  #         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

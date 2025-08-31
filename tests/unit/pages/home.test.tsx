@@ -11,7 +11,7 @@ describe("Home page", () => {
       "Hallo developer this is nextjs 15 starter"
     );
     expect(screen.getByTestId("heading-desc").textContent).toBe(
-      "Shadcn UI, React Hook Form, Zod, CVA, Tailwind CSS, Zustand, React Query"
+      "Shadcn UI, CVA, Tailwind CSS, React Hook Form, Zod, Zustand, React Query, Vitest, React Testing Library, Playwright"
     );
   });
 

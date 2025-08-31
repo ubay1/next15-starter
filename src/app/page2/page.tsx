@@ -70,7 +70,10 @@ export default function Page2() {
     <div className={cn("flex flex-col h-screen px-8 mt-10")}>
       <Card>
         <CardContent>
-          <div className="text-3xl text-center font-bold mb-10">
+          <div
+            data-testid="heading-greet"
+            className="text-3xl text-center font-bold mb-10"
+          >
             CRUD TRPC + Tanstack Query + Supabase
           </div>
           <Form {...form}>
