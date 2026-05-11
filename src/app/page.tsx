@@ -139,6 +139,9 @@ export default function Home() {
           <Button asChild data-testid="btn-goto-page2">
             <Link href="/page2">Goto Page 2</Link>
           </Button>
+          <Button asChild data-testid="btn-goto-profile">
+            <Link href="/profile">Goto Profile</Link>
+          </Button>
         </CardContent>
       </Card>
     </div>
